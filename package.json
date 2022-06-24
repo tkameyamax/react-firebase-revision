@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:staging": "REACT_APP_ENV=staging yarn run build && firebase deploy --except functions -P react-revision-b736a"
   },
   "eslintConfig": {
     "extends": [
