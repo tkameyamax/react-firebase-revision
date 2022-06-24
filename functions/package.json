@@ -7,24 +7,31 @@
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "deploy:staging": "firebase deploy --only functions -P react-revision-b736a",
+    "logs": "firebase functions:log",
+    "delete_functions_log": "GOOGLE_APPLICATION_CREDENTIALS=../google_application_credentials/react-revision-cloud-orner.json node script/delete_log.js "
   },
   "engines": {
     "node": "16"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@google-cloud/logging": "^10.0.4",
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0"
+    "firebase-functions": "^3.18.0",
+    "ts-node": "^10.8.1"
   },
   "devDependencies": {
+    "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
     "firebase-functions-test": "^0.2.0",
+    "prettier": "^2.7.1",
     "typescript": "^4.5.4"
   },
   "private": true
