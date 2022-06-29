@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:staging": "REACT_APP_ENV=staging yarn run build && firebase deploy --except functions -P react-revision-b736a"
+    "update_version": "GOOGLE_APPLICATION_CREDENTIALS=./google_application_credentials/react-revision-staging.json node ./script/update_version.js",
+    "deploy:staging": "REACT_APP_ENV=staging yarn run build && firebase deploy --except functions -P react-revision-b736a && GOOGLE_APPLICATION_CREDENTIALS=./google_application_credentials/react-revision-staging.json node ./script/update_version.js"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "firebase-admin": "^11.0.0"
   }
 }
