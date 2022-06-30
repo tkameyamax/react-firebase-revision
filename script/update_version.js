@@ -6,7 +6,7 @@ admin.initializeApp();
   const db = getFirestore();
   const today = new Date();
   const dateString = today.toUTCString();
-  await db.collection("configs").doc("version").update({ value: dateString });
+  await db.collection("configs").doc("version").set({ value: dateString });
 
   console.log("complete");
 })();
