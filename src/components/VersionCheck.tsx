@@ -12,11 +12,11 @@ const usePrevious = (value: any) => {
 
 export const VersionCheck = () => {
   const [version, setVersion] = useState<string | null>(null);
-  const [isInitial, setIsInitial] = useState<boolean>(false);
+  const [isInitial, setIsInitial] = useState<boolean>(true);
 
   const preIsInitial = usePrevious(isInitial);
   const preVersion = usePrevious(version);
-  const isChange = preIsInitial && preVersion !== version;
+  const isChange = !preIsInitial && preVersion !== version;
 
   useEffect(() => {
     const ref = doc(db, "configs", "version");
@@ -25,16 +25,16 @@ export const VersionCheck = () => {
       (doc) => {
         if (doc.exists()) {
           const newVersion = doc.data().value;
-          setIsInitial(true);
+          setIsInitial(false);
           setVersion(newVersion);
         } else {
-          setIsInitial(true);
+          setIsInitial(false);
           setVersion(null);
         }
       },
       (error) => {
         console.log(error);
-        setIsInitial(true);
+        setIsInitial(false);
       }
     );
     return unsubscribe;
